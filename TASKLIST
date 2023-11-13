@@ -1,0 +1,103 @@
+// PROGRAM FOR TASK LIST OPERATIONS
+
+#include<iostream.h>
+#include<conio.h>
+#include<string.h>
+
+const int m=50;
+
+class task
+{
+  char taskname[m][30];
+  int count;
+  int cnt;
+  public:
+    void add(void);
+    void remove(void);
+    void display(void);
+    void total(void)
+    {
+      count=0;
+      cnt=0;
+    }
+};
+
+void task :: add(void)
+{
+  cout<<"Enter task name\n";
+  cin>>taskname[count];
+  count++;
+  cnt++;
+  cout<<"Task added to task list \n";
+}
+
+void task :: remove(void)
+{
+  char t[50];
+  int flag=0;
+  cout<<"Enter name of task to be deleted \n";
+  cin>>t;
+  for(int i=0;i<count;i++)
+  {
+      if(strcmp(taskname[i],t)==0)
+      {
+	 strcpy(taskname[i],NULL);
+	 cnt--;
+	 cout<<"Task removed from task list \n";
+	 flag=1;
+      }
+  }
+  if(flag==0)
+     cout<<"Task not found in Task List \n";
+}
+
+void task :: display(void)
+{
+   if(cnt !=0)
+   {
+      cout<<"Task List\n";
+      for(int i=0;i<count;i++)
+      {
+	 if(strcmp(taskname[i],NULL)!=0)
+	   cout<<taskname[i]<<"\n";
+      }
+   }
+   else
+      cout<< "Task List is empty \n";
+}
+
+void main()
+{
+  task obj;
+  obj.total();
+  int opt;
+  clrscr();
+
+  do
+  {
+    cout<<"\n 1:Add task";
+    cout<<"\n 2:Delete task";
+    cout<<"\n 3:Display task";
+    cout<<"\n 4:Exit"<<"\n";
+    cin>>opt;
+
+    switch(opt)
+    {
+      case 1:
+	obj.add();
+	break;
+      case 2:
+	obj.remove();
+	break;
+      case 3:
+	obj.display();
+	break;
+      case 4:
+	break;
+    }
+ }while(opt!=4);
+
+}
+
+
+
